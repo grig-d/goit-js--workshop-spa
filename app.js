@@ -1,8 +1,10 @@
 const express = require('express');
 const exhbs = require('express-handlebars'); // импортируем библиотеку express-handlebars
+const products = require('./products.json'); // это импровизированная база данных
 
 const app = express(); // вызываем функцию экспресс, она возвращает нам объект, методами которого можно создать веб-сервер
 
+app.use(express.static('public'));
 // по умолчанию express использует шаблонизатор pug и поэтому его надо перерегистрировать
 app.set('view engine', 'hbs');
 // и настроить
@@ -19,7 +21,7 @@ app.get('/about', (req, res) => {
 });
 // http://localhost:4444/products
 app.get('/products', (req, res) => {
-  res.render('products');
+  res.render('products', { products, cssFileName: 'products' }); // передаём объект из products.json
 });
 
 // слушаем порт 4444 локально
