@@ -24,15 +24,22 @@ app.get('/products', (req, res) => {
   res.render('products', { products, cssFileName: 'products' }); // передаём объект из products.json
 });
 
+// динамический параметр
+app.get('/product/:productId', (req, res) => {
+  console.log(req.params);
+  const product = products.find(prod => prod.id === req.params.productId);
+  res.render('product', { product });
+});
+
 // слушаем порт 4444 локально
 app.listen(4444, () => {
   console.log('Application server is running on port 4444');
 });
 
-// 57-06
+// 1-04-00
 
 /*
-пишем application server, который будет слушать запросы и генерировать страничку
+пишем application server, который будет слушать запросы, генерировать страничку и отдавать её в клиент
 
 npm init -y
 
@@ -88,5 +95,6 @@ app.engine('hbs', exhbs({ extname: 'hbs' }));
 
 по умолчанию используется путь views/layouts/main.hbs
 
+навигация сайта - это маршруты, а не готовые странички.html
 
 */
