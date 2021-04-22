@@ -36,8 +36,6 @@ app.listen(4444, () => {
   console.log('Application server is running on port 4444');
 });
 
-// 1-04-00
-
 /*
 пишем application server, который будет слушать запросы, генерировать страничку и отдавать её в клиент
 
@@ -97,4 +95,8 @@ app.engine('hbs', exhbs({ extname: 'hbs' }));
 
 навигация сайта - это маршруты, а не готовые странички.html
 
+как всё задеплоить:
+в репо на GitHub запушить все изменения
+нужен специальный хостинг (GitHub Pages не умеет это делать)
+https://www.heroku.com/
 */
