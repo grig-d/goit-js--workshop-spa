@@ -115,7 +115,9 @@ https://www.heroku.com/
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
--
+-запушить все изменения на GitHub
 -надо пушить ветку main(GitHub) в ветку master(heroku) командой git push heroku main:master
 -параллельно в другом терминале можно запустить heroku logs --tail и смотреть логи релиза нашего приложения
+
+т.е. heroku - это Server(железо) + Web-server(софт), который позволяет запустить наш Application-server
 */
