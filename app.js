@@ -2,6 +2,13 @@ const express = require('express');
 const exhbs = require('express-handlebars'); // импортируем библиотеку express-handlebars
 const products = require('./products.json'); // это импровизированная база данных
 
+// process - глобальная переменная в node.js
+// env - свойство переменной
+// process.env - окружение переменной
+// в эту переменную окружения heroku будет передавать порт, а если локально - то 4444
+
+const PORT = process.env.PORT || 4444;
+
 const app = express(); // вызываем функцию экспресс, она возвращает нам объект, методами которого можно создать веб-сервер
 
 app.use(express.static('public'));
@@ -32,8 +39,8 @@ app.get('/product/:productId', (req, res) => {
 });
 
 // слушаем порт 4444 локально
-app.listen(4444, () => {
-  console.log('Application server is running on port 4444');
+app.listen(PORT, () => {
+  console.log(`Application server is running on port ${PORT}`);
 });
 
 /*
@@ -97,6 +104,18 @@ app.engine('hbs', exhbs({ extname: 'hbs' }));
 
 как всё задеплоить:
 в репо на GitHub запушить все изменения
-нужен специальный хостинг (GitHub Pages не умеет это делать)
+нужен специальный хостинг (GitHub Pages не умеет это делать), который умеет запускать сервер
 https://www.heroku.com/
+-установить heroku cli (https://devcenter.heroku.com/articles/heroku-cli)
+-залогиниться в терминале heroku login
+-создать проект на heroku - в терминале heroku create
+-проверить git remote -v
+-в package.json обязательно надо сделать скрипт start:
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+-
+-надо пушить ветку main(GitHub) в ветку master(heroku) командой git push heroku main:master
+-параллельно в другом терминале можно запустить heroku logs --tail и смотреть логи релиза нашего приложения
 */
