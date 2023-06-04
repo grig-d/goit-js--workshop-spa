@@ -1,1 +1,1 @@
-# js-goit-workshop-spa
+# goit-js--workshop-spa
